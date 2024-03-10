@@ -1,14 +1,9 @@
 2021 Introduction to Machine Learning Program Assignment #1 - Naïve Bayes
-TA: Evan Chang toosyou.tw@gmail.com
+==
 This programming assignment aims to help you understand the algorithm behind Naïve Bayes classifier and the basic workflow of machine learning.
 
-Before we start
-Join the discord server for TA support
 
-Ask questions on it, and we shall reply.
-Try not to ask for obvious answers or bug fixes.
-Memes and chit-chat welcome.
-Objective
+## Objective
 There are two datasets that need to be analyzed. For each dataset, you have to do the following:
 
 Data Input - 5%
