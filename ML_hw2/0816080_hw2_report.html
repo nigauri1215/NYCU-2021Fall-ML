@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>
+        Assignment2 Decision Tree &amp; Random Forest &amp; KNN &amp; PCA - HackMD
+    </title>
+    <link rel="icon" type="image/png" href="https://hackmd.io/favicon.png">
+    <link rel="apple-touch-icon" href="https://hackmd.io/apple-touch-icon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css" integrity="sha256-3iu9jgsy9TpTwXKb7bNQzqWekRX7pPK+2OLj3R922fo=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/octicons/3.5.0/octicons.min.css" integrity="sha256-QiWfLIsCT02Sdwkogf6YMiQlj4NE84MKkzEMkZnMGdg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.5.1/themes/prism.min.css" integrity="sha256-vtR0hSWRc3Tb26iuN2oZHt3KRUomwTufNIf5/4oeCyg=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@hackmd/emojify.js@2.1.0/dist/css/basic/emojify.min.css" integrity="sha256-UOrvMOsSDSrW6szVLe8ZDZezBxh5IoIfgTwdNDgTjiU=" crossorigin="anonymous" />
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i|Source+Code+Pro:300,400,500|Source+Sans+Pro:300,300i,400,400i,600,600i|Source+Serif+Pro&subset=latin-ext);.hljs{display:block;background:#fff;padding:.5em;color:#333;overflow-x:auto}.hljs-comment,.hljs-meta{color:#969896}.hljs-emphasis,.hljs-quote,.hljs-string,.hljs-strong,.hljs-template-variable,.hljs-variable{color:#df5000}.hljs-keyword,.hljs-selector-tag,.hljs-type{color:#a71d5d}.hljs-attribute,.hljs-bullet,.hljs-literal,.hljs-number,.hljs-symbol{color:#0086b3}.hljs-built_in,.hljs-builtin-name{color:#005cc5}.hljs-name,.hljs-section{color:#63a35c}.hljs-tag{color:#333}.hljs-attr,.hljs-selector-attr,.hljs-selector-class,.hljs-selector-id,.hljs-selector-pseudo,.hljs-title{color:#795da3}.hljs-addition{color:#55a532;background-color:#eaffea}.hljs-deletion{color:#bd2c00;background-color:#ffecec}.hljs-link{text-decoration:underline}.markdown-body{font-size:16px;line-height:1.5;word-wrap:break-word}.markdown-body:after,.markdown-body:before{display:table;content:""}.markdown-body:after{clear:both}.markdown-body>:first-child{margin-top:0!important}.markdown-body>:last-child{margin-bottom:0!important}.markdown-body a:not([href]){color:inherit;text-decoration:none}.markdown-body .absent{color:#c00}.markdown-body .anchor{float:left;padding-right:4px;margin-left:-20px;line-height:1}.markdown-body .anchor:focus{outline:none}.markdown-body blockquote,.markdown-body dl,.markdown-body ol,.markdown-body p,.markdown-body pre,.markdown-body table,.markdown-body ul{margin-top:0;margin-bottom:16px}.markdown-body hr{height:.25em;padding:0;margin:24px 0;background-color:#e7e7e7;border:0}.markdown-body blockquote{font-size:16px;padding:0 1em;color:#777;border-left:.25em solid #ddd}.markdown-body blockquote>:first-child{margin-top:0}.markdown-body blockquote>:last-child{margin-bottom:0}.markdown-body kbd,.popover kbd{display:inline-block;padding:3px 5px;font-size:11px;line-height:10px;color:#555;vertical-align:middle;background-color:#fcfcfc;border:1px solid #ccc;border-bottom-color:#bbb;border-radius:3px;box-shadow:inset 0 -1px 0 #bbb}.markdown-body .loweralpha{list-style-type:lower-alpha}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{margin-top:24px;margin-bottom:16px;font-weight:600;line-height:1.25}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{color:#000;vertical-align:middle;visibility:hidden}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{text-decoration:none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{visibility:visible}.markdown-body h1 code,.markdown-body h1 tt,.markdown-body h2 code,.markdown-body h2 tt,.markdown-body h3 code,.markdown-body h3 tt,.markdown-body h4 code,.markdown-body h4 tt,.markdown-body h5 code,.markdown-body h5 tt,.markdown-body h6 code,.markdown-body h6 tt{font-size:inherit}.markdown-body h1{font-size:2em}.markdown-body h1,.markdown-body h2{padding-bottom:.3em;border-bottom:1px solid #eee}.markdown-body h2{font-size:1.5em}.markdown-body h3{font-size:1.25em}.markdown-body h4{font-size:1em}.markdown-body h5{font-size:.875em}.markdown-body h6{font-size:.85em;color:#777}.markdown-body ol,.markdown-body ul{padding-left:2em}.markdown-body ol.no-list,.markdown-body ul.no-list{padding:0;list-style-type:none}.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul{margin-top:0;margin-bottom:0}.markdown-body li>p{margin-top:16px}.markdown-body li+li{padding-top:.25em}.markdown-body dl{padding:0}.markdown-body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}.markdown-body dl dd{padding:0 16px;margin-bottom:16px}.markdown-body table{display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}.markdown-body table th{font-weight:700}.markdown-body table td,.markdown-body table th{padding:6px 13px;border:1px solid #ddd}.markdown-body table tr{background-color:#fff;border-top:1px solid #ccc}.markdown-body table tr:nth-child(2n){background-color:#f8f8f8}.markdown-body img{max-width:100%;box-sizing:content-box;background-color:#fff}.markdown-body img[align=right]{padding-left:20px}.markdown-body img[align=left]{padding-right:20px}.markdown-body .emoji{max-width:none;vertical-align:text-top;background-color:transparent}.markdown-body span.frame{display:block;overflow:hidden}.markdown-body span.frame>span{display:block;float:left;width:auto;padding:7px;margin:13px 0 0;overflow:hidden;border:1px solid #ddd}.markdown-body span.frame span img{display:block;float:left}.markdown-body span.frame span span{display:block;padding:5px 0 0;clear:both;color:#333}.markdown-body span.align-center{display:block;overflow:hidden;clear:both}.markdown-body span.align-center>span{display:block;margin:13px auto 0;overflow:hidden;text-align:center}.markdown-body span.align-center span img{margin:0 auto;text-align:center}.markdown-body span.align-right{display:block;overflow:hidden;clear:both}.markdown-body span.align-right>span{display:block;margin:13px 0 0;overflow:hidden;text-align:right}.markdown-body span.align-right span img{margin:0;text-align:right}.markdown-body span.float-left{display:block;float:left;margin-right:13px;overflow:hidden}.markdown-body span.float-left span{margin:13px 0 0}.markdown-body span.float-right{display:block;float:right;margin-left:13px;overflow:hidden}.markdown-body span.float-right>span{display:block;margin:13px auto 0;overflow:hidden;text-align:right}.markdown-body code,.markdown-body tt{padding:0;padding-top:.2em;padding-bottom:.2em;margin:0;font-size:85%;background-color:rgba(0,0,0,.04);border-radius:3px}.markdown-body code:after,.markdown-body code:before,.markdown-body tt:after,.markdown-body tt:before{letter-spacing:-.2em;content:"\00a0"}.markdown-body code br,.markdown-body tt br{display:none}.markdown-body del code{text-decoration:inherit}.markdown-body pre{word-wrap:normal}.markdown-body pre>code{padding:0;margin:0;font-size:100%;word-break:normal;white-space:pre;background:transparent;border:0}.markdown-body .highlight{margin-bottom:16px}.markdown-body .highlight pre{margin-bottom:0;word-break:normal}.markdown-body .highlight pre,.markdown-body pre{padding:16px;overflow:auto;font-size:85%;line-height:1.45;background-color:#f7f7f7;border-radius:3px}.markdown-body pre code,.markdown-body pre tt{display:inline;max-width:auto;padding:0;margin:0;overflow:visible;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}.markdown-body pre code:after,.markdown-body pre code:before,.markdown-body pre tt:after,.markdown-body pre tt:before{content:normal}.markdown-body .csv-data td,.markdown-body .csv-data th{padding:5px;overflow:hidden;font-size:12px;line-height:1;text-align:left;white-space:nowrap}.markdown-body .csv-data .blob-line-num{padding:10px 8px 9px;text-align:right;background:#fff;border:0}.markdown-body .csv-data tr{border-top:0}.markdown-body .csv-data th{font-weight:700;background:#f8f8f8;border-top:0}.news .alert .markdown-body blockquote{padding:0 0 0 40px;border:0 none}.activity-tab .news .alert .commits,.activity-tab .news .markdown-body blockquote{padding-left:0}.task-list-item{list-style-type:none}.task-list-item label{font-weight:400}.task-list-item.enabled label{cursor:pointer}.task-list-item+.task-list-item{margin-top:3px}.task-list-item-checkbox{float:left;margin:.31em 0 .2em -1.3em!important;vertical-align:middle;cursor:default!important}.markdown-body{padding-top:40px;padding-bottom:40px;max-width:758px;overflow:visible!important;position:relative}.markdown-body .emoji{vertical-align:top}.markdown-body pre{border:inherit!important}.markdown-body code{color:inherit!important}.markdown-body pre code .wrapper{display:-moz-inline-flex;display:-ms-inline-flex;display:-o-inline-flex;display:inline-flex}.markdown-body pre code .gutter{float:left;overflow:hidden;-webkit-user-select:none;user-select:none}.markdown-body pre code .gutter.linenumber{text-align:right;position:relative;display:inline-block;cursor:default;z-index:4;padding:0 8px 0 0;min-width:20px;box-sizing:content-box;color:#afafaf!important;border-right:3px solid #6ce26c!important}.markdown-body pre code .gutter.linenumber>span:before{content:attr(data-linenumber)}.markdown-body pre code .code{float:left;margin:0 0 0 16px}.markdown-body .gist .line-numbers{border-left:none;border-top:none;border-bottom:none}.markdown-body .gist .line-data{border:none}.markdown-body .gist table{border-spacing:0;border-collapse:inherit!important}.markdown-body code[data-gist-id]{background:none;padding:0}.markdown-body code[data-gist-id]:after,.markdown-body code[data-gist-id]:before{content:""}.markdown-body code[data-gist-id] .blob-num{border:unset}.markdown-body code[data-gist-id] table{overflow:unset;margin-bottom:unset}.markdown-body code[data-gist-id] table tr{background:unset}.markdown-body[dir=rtl] pre{direction:ltr}.markdown-body[dir=rtl] code{direction:ltr;unicode-bidi:embed}.markdown-body .alert>p{margin-bottom:0}.markdown-body pre.abc,.markdown-body pre.flow-chart,.markdown-body pre.graphviz,.markdown-body pre.mermaid,.markdown-body pre.sequence-diagram,.markdown-body pre.vega{text-align:center;background-color:inherit;border-radius:0;white-space:inherit;overflow:visible}.markdown-body pre.abc>code,.markdown-body pre.flow-chart>code,.markdown-body pre.graphviz>code,.markdown-body pre.mermaid>code,.markdown-body pre.sequence-diagram>code,.markdown-body pre.vega>code{text-align:left}.markdown-body pre.abc>svg,.markdown-body pre.flow-chart>svg,.markdown-body pre.graphviz>svg,.markdown-body pre.mermaid>svg,.markdown-body pre.sequence-diagram>svg,.markdown-body pre.vega>svg{max-width:100%;height:100%}.markdown-body pre>code.wrap{white-space:pre-wrap;white-space:-moz-pre-wrap;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word}.markdown-body .alert>p,.markdown-body .alert>ul{margin-bottom:0}.markdown-body summary{display:list-item}.markdown-body summary:focus{outline:none}.markdown-body details summary{cursor:pointer}.markdown-body details:not([open])>:not(summary){display:none}.markdown-body figure{margin:1em 40px}.markdown-body .mark,.markdown-body mark{background-color:#fff1a7}.vimeo,.youtube{cursor:pointer;display:table;text-align:center;background-position:50%;background-repeat:no-repeat;background-size:contain;background-color:#000;overflow:hidden}.vimeo,.youtube{position:relative;width:100%}.youtube{padding-bottom:56.25%}.vimeo img{width:100%;object-fit:contain;z-index:0}.youtube img{object-fit:cover;z-index:0}.vimeo iframe,.youtube iframe,.youtube img{width:100%;height:100%;position:absolute;top:0;left:0}.vimeo iframe,.youtube iframe{vertical-align:middle;z-index:1}.vimeo .icon,.youtube .icon{position:absolute;height:auto;width:auto;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;opacity:.3;transition:opacity .2s;z-index:0}.vimeo:hover .icon,.youtube:hover .icon{opacity:.6;transition:opacity .2s}.slideshare .inner,.speakerdeck .inner{position:relative;width:100%}.slideshare .inner iframe,.speakerdeck .inner iframe{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%}.figma{display:table;position:relative;width:100%;padding-bottom:56.25%}.figma iframe{position:absolute;top:0;bottom:0;left:0;right:0;width:100%;height:100%;border:1px solid #eee}.MJX_Assistive_MathML{display:none}#MathJax_Message{z-index:1000!important}.ui-infobar{position:relative;z-index:2;max-width:760px;margin:25px auto -25px;color:#777}.toc .invisable-node{list-style-type:none}.ui-toc{position:fixed;bottom:20px;z-index:998}.ui-toc.both-mode{margin-left:8px}.ui-toc.both-mode .ui-toc-label{height:40px;padding:10px 4px;border-top-left-radius:0;border-bottom-left-radius:0}.ui-toc-label{background-color:#e6e6e6;border:none;color:#868686;transition:opacity .2s}.ui-toc .open .ui-toc-label{opacity:1;color:#fff;transition:opacity .2s}.ui-toc-label:focus{opacity:.3;background-color:#ccc;color:#000}.ui-toc-label:hover{opacity:1;background-color:#ccc;transition:opacity .2s}.ui-toc-dropdown{margin-top:20px;margin-bottom:20px;padding-left:10px;padding-right:10px;max-width:45vw;width:25vw;max-height:70vh;overflow:auto;text-align:inherit}.ui-toc-dropdown>.toc{max-height:calc(70vh - 100px);overflow:auto}.ui-toc-dropdown[dir=rtl] .nav{padding-right:0;letter-spacing:.0029em}.ui-toc-dropdown a{overflow:hidden;text-overflow:ellipsis;white-space:pre}.ui-toc-dropdown .nav>li>a{display:block;padding:4px 20px;font-size:13px;font-weight:500;color:#767676}.ui-toc-dropdown .nav>li:first-child:last-child>ul,.ui-toc-dropdown .toc.expand ul{display:block}.ui-toc-dropdown .nav>li>a:focus,.ui-toc-dropdown .nav>li>a:hover{padding-left:19px;color:#000;text-decoration:none;background-color:transparent;border-left:1px solid #000}.ui-toc-dropdown[dir=rtl] .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav>li>a:hover{padding-right:19px;border-left:none;border-right:1px solid #000}.ui-toc-dropdown .nav>.active:focus>a,.ui-toc-dropdown .nav>.active:hover>a,.ui-toc-dropdown .nav>.active>a{padding-left:18px;font-weight:700;color:#000;background-color:transparent;border-left:2px solid #000}.ui-toc-dropdown[dir=rtl] .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav>.active>a{padding-right:18px;border-left:none;border-right:2px solid #000}.ui-toc-dropdown .nav .nav{display:none;padding-bottom:10px}.ui-toc-dropdown .nav>.active>ul{display:block}.ui-toc-dropdown .nav .nav>li>a{padding-top:1px;padding-bottom:1px;padding-left:30px;font-size:12px;font-weight:400}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a{padding-right:30px}.ui-toc-dropdown .nav .nav>li>ul>li>a{padding-top:1px;padding-bottom:1px;padding-left:40px;font-size:12px;font-weight:400}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a{padding-right:40px}.ui-toc-dropdown .nav .nav>li>a:focus,.ui-toc-dropdown .nav .nav>li>a:hover{padding-left:29px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>a:hover{padding-right:29px}.ui-toc-dropdown .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown .nav .nav>li>ul>li>a:hover{padding-left:39px}.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:focus,.ui-toc-dropdown[dir=rtl] .nav .nav>li>ul>li>a:hover{padding-right:39px}.ui-toc-dropdown .nav .nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>a{padding-left:28px;font-weight:500}.ui-toc-dropdown[dir=rtl] .nav .nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>a{padding-right:28px}.ui-toc-dropdown .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown .nav .nav>.active>.nav>.active>a{padding-left:38px;font-weight:500}.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:focus>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active:hover>a,.ui-toc-dropdown[dir=rtl] .nav .nav>.active>.nav>.active>a{padding-right:38px}.markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,sans-serif}html[lang^=ja] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ\ ゴシック,sans-serif}html[lang=zh-tw] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html[lang=zh-cn] .markdown-body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}html .markdown-body[lang^=ja]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ\ ゴシック,sans-serif}html .markdown-body[lang=zh-tw]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html .markdown-body[lang=zh-cn]{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Helvetica,Roboto,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}html[lang^=ja] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Meiryo UI,MS PGothic,ＭＳ\ Ｐゴシック,sans-serif}html[lang=zh-tw] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Microsoft JhengHei UI,微軟正黑UI,sans-serif}html[lang=zh-cn] .ui-toc-dropdown{font-family:Source Sans Pro,Helvetica,Arial,Microsoft YaHei UI,微软雅黑UI,sans-serif}html .ui-toc-dropdown[lang^=ja]{font-family:Source Sans Pro,Helvetica,Arial,Meiryo UI,MS PGothic,ＭＳ\ Ｐゴシック,sans-serif}html .ui-toc-dropdown[lang=zh-tw]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft JhengHei UI,微軟正黑UI,sans-serif}html .ui-toc-dropdown[lang=zh-cn]{font-family:Source Sans Pro,Helvetica,Arial,Microsoft YaHei UI,微软雅黑UI,sans-serif}.ui-affix-toc{position:fixed;top:0;max-width:15vw;max-height:70vh;overflow:auto}.back-to-top,.expand-toggle,.go-to-bottom{display:block;padding:4px 10px;margin-top:10px;margin-left:10px;font-size:12px;font-weight:500;color:#999}.back-to-top:focus,.back-to-top:hover,.expand-toggle:focus,.expand-toggle:hover,.go-to-bottom:focus,.go-to-bottom:hover{color:#563d7c;text-decoration:none}.back-to-top,.go-to-bottom{margin-top:0}.ui-user-icon{width:20px;height:20px;display:block;border-radius:50%;margin-top:2px;margin-bottom:2px;margin-right:5px;background-position:50%;background-repeat:no-repeat;background-size:cover}.ui-user-icon.small{width:18px;height:18px;display:inline-block;vertical-align:middle;margin:0 0 .2em}.ui-infobar>small>span{line-height:22px}.ui-infobar>small .dropdown{display:inline-block}.ui-infobar>small .dropdown a:focus,.ui-infobar>small .dropdown a:hover{text-decoration:none}.ui-more-info{color:#888;cursor:pointer;vertical-align:middle}.ui-more-info .fa{font-size:16px}.ui-connectedGithub,.ui-published-note{color:#888}.ui-connectedGithub{line-height:23px;white-space:nowrap}.ui-connectedGithub a.file-path{color:#888;text-decoration:none;padding-left:22px}.ui-connectedGithub a.file-path:active,.ui-connectedGithub a.file-path:hover{color:#888;text-decoration:underline}.ui-connectedGithub .fa{font-size:20px}.ui-published-note .fa{font-size:20px;vertical-align:top}.unselectable{-webkit-user-select:none;-o-user-select:none;user-select:none}.selectable{-webkit-user-select:text;-o-user-select:text;user-select:text}@media print{blockquote,div,img,pre,table{page-break-inside:avoid!important}a[href]:after{font-size:12px!important}}.markdown-body.slides{position:relative;z-index:1;color:#222}.markdown-body.slides:before{content:"";display:block;position:absolute;top:0;left:0;right:0;bottom:0;z-index:-1;background-color:currentColor;box-shadow:0 0 0 50vw}.markdown-body.slides section[data-markdown]{position:relative;margin-bottom:1.5em;background-color:#fff;text-align:center}.markdown-body.slides section[data-markdown] code{text-align:left}.markdown-body.slides section[data-markdown]:before{content:"";display:block;padding-bottom:56.23%}.markdown-body.slides section[data-markdown]>div:first-child{position:absolute;top:50%;left:1em;right:1em;transform:translateY(-50%);max-height:100%;overflow:hidden}.markdown-body.slides section[data-markdown]>ul{display:inline-block}.markdown-body.slides>section>section+section:after{content:"";position:absolute;top:-1.5em;right:1em;height:1.5em;border:3px solid #777}.site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,sans-serif}html[lang^=ja] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ\ ゴシック,sans-serif}html[lang=zh-tw] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html[lang=zh-cn] .site-ui-font{font-family:Source Sans Pro,Helvetica,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}body{font-smoothing:subpixel-antialiased!important;-webkit-font-smoothing:subpixel-antialiased!important;-moz-osx-font-smoothing:auto!important;text-shadow:0 0 1em transparent,1px 1px 1.2px rgba(0,0,0,.004);-webkit-overflow-scrolling:touch;letter-spacing:.025em;font-family:Source Sans Pro,Helvetica,Arial,sans-serif}html[lang^=ja] body{font-family:Source Sans Pro,Helvetica,Arial,Hiragino Kaku Gothic Pro,ヒラギノ角ゴ Pro W3,Osaka,Meiryo,メイリオ,MS Gothic,ＭＳ\ ゴシック,sans-serif}html[lang=zh-tw] body{font-family:Source Sans Pro,Helvetica,Arial,PingFang TC,Microsoft JhengHei,微軟正黑,sans-serif}html[lang=zh-cn] body{font-family:Source Sans Pro,Helvetica,Arial,PingFang SC,Microsoft YaHei,微软雅黑,sans-serif}abbr[title]{border-bottom:none;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}abbr[data-original-title],abbr[title]{cursor:help}body.modal-open{overflow-y:auto;padding-right:0!important}
+    </style>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" integrity="sha256-3Jy/GbSLrg0o9y5Z5n1uw0qxZECH7C6OQpVBgNFYa0g=" crossorigin="anonymous"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js" integrity="sha256-g6iAfvZp+nDQ2TdTR/VVKJf3bGro4ub5fvWSWVRi2NE=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.9/es5-shim.min.js" integrity="sha256-8E4Is26QH0bD52WoQpcB+R/tcWQtpzlCojrybUd7Mxo=" crossorigin="anonymous"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div id="doc" class="markdown-body container-fluid comment-enabled" data-hard-breaks="true"><h1 id="Assignment2-Decision-Tree-amp-Random-Forest-amp-KNN-amp-PCA" data-id="Assignment2-Decision-Tree-amp-Random-Forest-amp-KNN-amp-PCA"><a class="anchor hidden-xs" href="#Assignment2-Decision-Tree-amp-Random-Forest-amp-KNN-amp-PCA" title="Assignment2-Decision-Tree-amp-Random-Forest-amp-KNN-amp-PCA"><span class="octicon octicon-link"></span></a><span>Assignment2 Decision Tree &amp; Random Forest &amp; KNN &amp; PCA</span></h1><p><span>0816080 許舒茵</span></p><h2 id="Data-Input" data-id="Data-Input"><a class="anchor hidden-xs" href="#Data-Input" title="Data-Input"><span class="octicon octicon-link"></span></a><span>Data Input</span></h2><ul>
+<li><span>import 需要的module</span></li>
+<li><span>用pandas的read_csv讀取</span></li>
+<li><span>讀進來的檔用 ; 分開，加參數sep=‘;’</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span></div><div class="code">df=pd.read_csv(<span class="hljs-string">'student-mat.csv'</span>,sep=<span class="hljs-string">';'</span>)
+</div></div></code></pre><h1 id="Binary-classification" data-id="Binary-classification"><a class="anchor hidden-xs" href="#Binary-classification" title="Binary-classification"><span class="octicon octicon-link"></span></a><span>Binary classification</span></h1><h2 id="Data-Preprocessing" data-id="Data-Preprocessing"><a class="anchor hidden-xs" href="#Data-Preprocessing" title="Data-Preprocessing"><span class="octicon octicon-link"></span></a><span>Data Preprocessing</span></h2><ul>
+<li><span>使用apply函數裡的lambda指定每個row[‘G3’]如果&gt;=10設為1(pass)，else設為0(fail)</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code"><span class="hljs-comment">#generate binary label</span>
+df_bi=df.copy()
+df_bi[<span class="hljs-string">'pass'</span>]=df_bi.apply(<span class="hljs-keyword">lambda</span> row:<span class="hljs-number">1</span> <span class="hljs-keyword">if</span> row[<span class="hljs-string">'G3'</span>]&gt;=<span class="hljs-number">10</span> <span class="hljs-keyword">else</span> <span class="hljs-number">0</span>,axis=<span class="hljs-number">1</span>)
+df_bi=df_bi.drop([<span class="hljs-string">'G3'</span>],axis=<span class="hljs-number">1</span>)
+</div></div></code></pre><h3 id="one-hot-encoding" data-id="one-hot-encoding"><a class="anchor hidden-xs" href="#one-hot-encoding" title="one-hot-encoding"><span class="octicon octicon-link"></span></a><span>one-hot-encoding</span></h3><ul>
+<li><span>用pandas的get_dummies function將某些含有string的column轉換成數字型態</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span></div><div class="code">df_bi=pd.get_dummies(df_bi,columns=[<span class="hljs-string">'sex'</span>,<span class="hljs-string">'school'</span>,<span class="hljs-string">'address'</span>,<span class="hljs-string">'famsize'</span>,<span class="hljs-string">'Pstatus'</span>,<span class="hljs-string">'Mjob'</span>,<span class="hljs-string">'Fjob'</span>,
+                                 <span class="hljs-string">'reason'</span>,<span class="hljs-string">'guardian'</span>,<span class="hljs-string">'schoolsup'</span>,<span class="hljs-string">'famsup'</span>,<span class="hljs-string">'paid'</span>,<span class="hljs-string">'activities'</span>,
+                                <span class="hljs-string">'nursery'</span>,<span class="hljs-string">'higher'</span>,<span class="hljs-string">'internet'</span>,<span class="hljs-string">'romantic'</span>])
+</div></div></code></pre><h3 id="Shuffle-and-split-the-data" data-id="Shuffle-and-split-the-data"><a class="anchor hidden-xs" href="#Shuffle-and-split-the-data" title="Shuffle-and-split-the-data"><span class="octicon octicon-link"></span></a><span>Shuffle and split the data</span></h3><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code">df_bi=sklearn.utils.shuffle(df_bi)
+
+<span class="hljs-comment">#make x y data</span>
+y = df_bi[<span class="hljs-string">'pass'</span>].values
+x = df_bi.drop([<span class="hljs-string">'pass'</span>], axis=<span class="hljs-number">1</span>).values
+</div></div></code></pre><h3 id="Build-Table" data-id="Build-Table"><a class="anchor hidden-xs" href="#Build-Table" title="Build-Table"><span class="octicon octicon-link"></span></a><span>Build Table</span></h3><ul>
+<li><span>建立紀錄數據用的table</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code">table1=prettytable.PrettyTable()
+table1.field_names=[<span class="hljs-string">'[Binary] Decision Tree '</span>,<span class="hljs-string">'Accuracy'</span>,<span class="hljs-string">'Recall'</span>,<span class="hljs-string">'Precision'</span>]
+
+table2=prettytable.PrettyTable()
+table2.field_names=[<span class="hljs-string">'[Binary] Random Forest'</span>,<span class="hljs-string">'Accuracy'</span>,<span class="hljs-string">'Recall'</span>,<span class="hljs-string">'Precision'</span>]
+
+table3=prettytable.PrettyTable()
+table3.field_names=[<span class="hljs-string">'[Binary] KNN Classifier '</span>,<span class="hljs-string">'Accuracy'</span>,<span class="hljs-string">'Recall'</span>,<span class="hljs-string">'Precision'</span>]
+</div></div></code></pre><h2 id="Model-Construction-amp-Validation" data-id="Model-Construction-amp-Validation"><a class="anchor hidden-xs" href="#Model-Construction-amp-Validation" title="Model-Construction-amp-Validation"><span class="octicon octicon-link"></span></a><span>Model Construction &amp; Validation</span></h2><div class="alert alert-info">
+<p><span>此次作業都使用sklearn提供的model</span><br>
+<span>一些說明如下</span></p>
+</div><ol>
+<li><span>Decision Tree</span>
+<ul>
+<li><span>ID3 (Iterative Dichotomiser 3) ，該算法創建了一個 multiway tree，為每個節點（即以貪婪的方式）找到將為分類目標產生最大信息增益的分類特徵。樹生長到它們的最大大小，然後通常應用修剪步驟來提高樹泛化到看不見的數據的能力。</span></li>
+<li><span>C4.5 是 ID3 的後繼者，並通過動態定義將連續屬性值劃分為一組離散區間的離散屬性（基於數值變量）取消了特徵必須是分類的限制。</span></li>
+<li><span>CART（分類和回歸樹）與 C4.5 非常相似，但不同之處在於它支持數值目標變量（回歸）並且不計算規則集。CART 使用在每個節點產生最大信息增益的特徵和閾值構建二叉樹。</span></li>
+<li><strong><span>scikit-learn 使用 CART 算法的優化版本</span></strong></li>
+</ul>
+</li>
+<li><span>Random forest</span>
+<ul>
+<li><span>Random forest和K-fold cross-validation 本來就不一樣，一個是model一個是驗證用的方法</span></li>
+<li><span>random forest透過建立多棵decision tree來投票決定最後的結果，而K-fold cross-validation是將資料分為訓練及跟測試集，讓測試的結果跟實際結果對照</span></li>
+<li><span>也就是說，random forest最後的值終究只是推測，還是需要cross-validation來反覆驗證正確率</span></li>
+</ul>
+</li>
+</ol><h2 id="Without-PCA" data-id="Without-PCA"><a class="anchor hidden-xs" href="#Without-PCA" title="Without-PCA"><span class="octicon octicon-link"></span></a><span>Without PCA</span></h2><h3 id="Decision-Tree" data-id="Decision-Tree"><a class="anchor hidden-xs" href="#Decision-Tree" title="Decision-Tree"><span class="octicon octicon-link"></span></a><span>Decision Tree</span></h3><ul>
+<li><span>使用sklearn裡的DecisionTreeClassifier</span></li>
+<li><span>把資料集分為K個子集，用K-1個作為訓練集，剩下1個為測試集，這裡K=3，相當於67% training，33% testing</span></li>
+<li><span>使用Kfold module，n_split=3表示把資料分為三塊，當shuffle=True時會先打亂原始資料</span></li>
+<li><span>生成data set之後用for迴圈訓練，每一圈跑一個data set，每圈都會記錄accuracy recall precision和confusion matrix，最後會取平均紀錄到table上</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code">dtc = DecisionTreeClassifier()
+<span class="hljs-comment"># K-fold cross-validation with 𝐾=3</span>
+<span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> KFold
+kf=KFold(n_splits=<span class="hljs-number">3</span>, random_state=<span class="hljs-literal">None</span>, shuffle=<span class="hljs-literal">True</span>)
+
+matrix_list=<span class="hljs-built_in">list</span>()
+accuracies=[]
+kf_acc=[]
+kf_recall=[]
+kf_prec=[]
+
+<span class="hljs-keyword">for</span> train_index, test_index <span class="hljs-keyword">in</span> kf.split(x):
+    x_train, x_test = x[train_index], x[test_index]
+    y_train, y_test = y[train_index], y[test_index]
+    dtc.fit(x_train,y_train)
+    matrix_list.append(confusion_matrix(y_test, dtc.predict(x_test)))
+    kf_acc=accuracy_score(y_test,dtc.predict(x_test))
+    kf_recall=recall_score(y_test,dtc.predict(x_test),average=<span class="hljs-string">'weighted'</span>)
+    kf_prec=precision_score(y_test,dtc.predict(x_test),average=<span class="hljs-string">'weighted'</span>)
+    
+    accuracies=dtc.score(x_test,y_test)
+
+acc_avg=np.mean(accuracies)
+print(<span class="hljs-string">"K-fold cross-validation accuracy: {}%"</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">round</span>(acc_avg*<span class="hljs-number">100</span>,<span class="hljs-number">2</span>)))
+
+matrix_list=np.average(np.array(matrix_list),axis=<span class="hljs-number">0</span>)
+</div></div></code></pre><ul>
+<li><strong><span>confusion matrix</span></strong><br>
+<img src="https://i.imgur.com/88HOR6g.png" alt="" loading="lazy"></li>
+<li><strong><span>result</span></strong><br>
+<img src="https://i.imgur.com/loSClUZ.png" alt="" width="450" loading="lazy"><br>
+<img src="https://i.imgur.com/UTuSRr9.png" alt="" width="450" loading="lazy"></li>
+</ul><h3 id="Random-Forest" data-id="Random-Forest"><a class="anchor hidden-xs" href="#Random-Forest" title="Random-Forest"><span class="octicon octicon-link"></span></a><span>Random Forest</span></h3><ul>
+<li><span>使用sklearn裡的RandomForestClassifier</span></li>
+<li><span>設n=10，總共生成10棵decision tree</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code"><span class="hljs-comment"># n trees=10</span>
+forest1 = RandomForestClassifier(n_estimators=<span class="hljs-number">10</span>)
+<span class="hljs-comment"># K-fold cross-validation with 𝐾=3</span>
+<span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> KFold
+kf=KFold(n_splits=<span class="hljs-number">3</span>, random_state=<span class="hljs-literal">None</span>, shuffle=<span class="hljs-literal">True</span>)
+
+matrix_list=<span class="hljs-built_in">list</span>()
+accuracies=[]
+kf_acc=[]
+kf_recall=[]
+kf_prec=[]
+
+<span class="hljs-keyword">for</span> train_index, test_index <span class="hljs-keyword">in</span> kf.split(x):
+    x_train, x_test = x[train_index], x[test_index]
+    y_train, y_test = y[train_index], y[test_index]
+    forest1.fit(x_train,y_train)
+    matrix_list.append(confusion_matrix(y_test, forest1.predict(x_test)))
+    kf_acc=accuracy_score(y_test,forest1.predict(x_test))
+    kf_recall=recall_score(y_test,forest1.predict(x_test))
+    kf_prec=precision_score(y_test,forest1.predict(x_test))
+    
+    accuracies=forest1.score(x_test,y_test)
+
+acc_avg=np.mean(accuracies)
+print(<span class="hljs-string">"K-fold cross-validation accuracy: {}%"</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">round</span>(acc_avg*<span class="hljs-number">100</span>,<span class="hljs-number">2</span>)))
+
+matrix_list=np.average(np.array(matrix_list),axis=<span class="hljs-number">0</span>)
+</div></div></code></pre><ul>
+<li><strong><span>confusion matrix</span></strong><br>
+<img src="https://i.imgur.com/CaqGxzV.png" alt="" loading="lazy"></li>
+<li><strong><span>result</span></strong><br>
+<img src="https://i.imgur.com/LHMNWZy.png" alt="" width="450" loading="lazy"><br>
+<img src="https://i.imgur.com/Muqz4Cq.png" alt="" width="450" loading="lazy"></li>
+</ul><h3 id="KNN" data-id="KNN"><a class="anchor hidden-xs" href="#KNN" title="KNN"><span class="octicon octicon-link"></span></a><span>KNN</span></h3><ul>
+<li><span>使用sklearn的KNeighborsClassifier</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code">knn = KNeighborsClassifier(n_neighbors=<span class="hljs-number">5</span>)
+<span class="hljs-comment"># K-fold cross-validation with 𝐾=3</span>
+<span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> KFold
+kf=KFold(n_splits=<span class="hljs-number">3</span>, random_state=<span class="hljs-literal">None</span>, shuffle=<span class="hljs-literal">True</span>)
+
+matrix_list=<span class="hljs-built_in">list</span>()
+accuracies=[]
+kf_acc=[]
+kf_recall=[]
+kf_prec=[]
+
+<span class="hljs-keyword">for</span> train_index, test_index <span class="hljs-keyword">in</span> kf.split(x):
+    x_train, x_test = x[train_index], x[test_index]
+    y_train, y_test = y[train_index], y[test_index]
+    knn.fit(x_train,y_train)
+    matrix_list.append(confusion_matrix(y_test, knn.predict(x_test)))
+    kf_acc=accuracy_score(y_test,knn.predict(x_test))
+    kf_recall=recall_score(y_test,knn.predict(x_test))
+    kf_prec=precision_score(y_test,knn.predict(x_test))
+    
+    accuracies=knn.score(x_test,y_test)
+
+acc_avg=np.mean(accuracies)
+print(<span class="hljs-string">"K-fold cross-validation accuracy: {}%"</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">round</span>(acc_avg*<span class="hljs-number">100</span>,<span class="hljs-number">2</span>)))
+
+matrix_list=np.average(np.array(matrix_list),axis=<span class="hljs-number">0</span>)
+</div></div></code></pre><ul>
+<li><strong><span>confusion matrix</span></strong><br>
+<img src="https://i.imgur.com/Prf6IoH.png" alt="" width="300" loading="lazy"></li>
+<li><strong><span>result</span></strong><br>
+<img src="https://i.imgur.com/tzfr848.png" alt="" width="450" loading="lazy"><br>
+<img src="https://i.imgur.com/W02p6r6.png" alt="" width="450" loading="lazy"></li>
+</ul><h2 id="With-PCA" data-id="With-PCA"><a class="anchor hidden-xs" href="#With-PCA" title="With-PCA"><span class="octicon octicon-link"></span></a><span>With PCA</span></h2><h2 id="Principal-components-analysis-PCA" data-id="Principal-components-analysis-PCA"><a class="anchor hidden-xs" href="#Principal-components-analysis-PCA" title="Principal-components-analysis-PCA"><span class="octicon octicon-link"></span></a><span>Principal components analysis (PCA)</span></h2><h3 id="Decision-Tree1" data-id="Decision-Tree"><a class="anchor hidden-xs" href="#Decision-Tree1" title="Decision-Tree1"><span class="octicon octicon-link"></span></a><span>Decision Tree</span></h3><ul>
+<li><span>在model.fit()前面call PCA()，將參數設定</span><code>n_components='mle'</code><span>:此時PCA類會用MLE演算法根據特徵的方差分佈情況自己去選擇一定數量的主成分特徵來降維</span></li>
+<li><span>把x_train x_test都做transform使訓練跟測試資料的維度一樣</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code">dtc = DecisionTreeClassifier()
+<span class="hljs-comment"># K-fold cross-validation with 𝐾=3</span>
+<span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> KFold
+kf=KFold(n_splits=<span class="hljs-number">3</span>, random_state=<span class="hljs-literal">None</span>, shuffle=<span class="hljs-literal">True</span>)
+
+matrix_list=<span class="hljs-built_in">list</span>()
+accuracies=[]
+kf_acc=[]
+kf_recall=[]
+kf_prec=[]
+
+<span class="hljs-keyword">for</span> train_index, test_index <span class="hljs-keyword">in</span> kf.split(x):
+    x_train, x_test = x[train_index], x[test_index]
+    y_train, y_test = y[train_index], y[test_index]
+    pca = PCA(n_components=<span class="hljs-string">'mle'</span>)
+    pca.fit(x_train)
+    x_train=pca.transform(x_train)
+    x_test=pca.transform(x_test)
+    dtc.fit(x_train,y_train)
+    matrix_list.append(confusion_matrix(y_test, dtc.predict(x_test)))
+    kf_acc=accuracy_score(y_test,dtc.predict(x_test))
+    kf_recall=recall_score(y_test,dtc.predict(x_test),average=<span class="hljs-string">'weighted'</span>)
+    kf_prec=precision_score(y_test,dtc.predict(x_test),average=<span class="hljs-string">'weighted'</span>)
+    
+    accuracies=dtc.score(x_test,y_test)
+
+acc_avg=np.mean(accuracies)
+print(<span class="hljs-string">"K-fold cross-validation accuracy: {}%"</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">round</span>(acc_avg*<span class="hljs-number">100</span>,<span class="hljs-number">2</span>)))
+
+matrix_list=np.average(np.array(matrix_list),axis=<span class="hljs-number">0</span>)
+</div></div></code></pre><ul>
+<li>
+<p><strong><span>confusion matrix</span></strong><br>
+<img src="https://i.imgur.com/9hRR2Sq.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><strong><span>result</span></strong><br>
+<img src="https://i.imgur.com/ifrLi0Z.png" alt="" width="450" loading="lazy"><br>
+<img src="https://i.imgur.com/YUcB2WG.png" alt="" width="450" loading="lazy"></p>
+</li>
+</ul><h3 id="Random-Forest1" data-id="Random-Forest"><a class="anchor hidden-xs" href="#Random-Forest1" title="Random-Forest1"><span class="octicon octicon-link"></span></a><span>Random Forest</span></h3><div class="alert alert-warning">
+<p><span>此處做random forest的3 different numbers of trees</span></p>
+</div><ul>
+<li><span>n_estimators=10</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code"><span class="hljs-comment"># n trees=10</span>
+forest1 = RandomForestClassifier(n_estimators=<span class="hljs-number">10</span>)
+<span class="hljs-comment"># K-fold cross-validation with 𝐾=3</span>
+<span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> KFold
+kf=KFold(n_splits=<span class="hljs-number">3</span>, random_state=<span class="hljs-literal">None</span>, shuffle=<span class="hljs-literal">True</span>)
+
+matrix_list=<span class="hljs-built_in">list</span>()
+accuracies=[]
+kf_acc=[]
+kf_recall=[]
+kf_prec=[]
+
+<span class="hljs-keyword">for</span> train_index, test_index <span class="hljs-keyword">in</span> kf.split(x):
+    x_train, x_test = x[train_index], x[test_index]
+    y_train, y_test = y[train_index], y[test_index]
+    pca = PCA(n_components=<span class="hljs-string">'mle'</span>)
+    pca.fit(x_train)
+    x_train=pca.transform(x_train)
+    x_test=pca.transform(x_test)
+    forest1.fit(x_train,y_train)
+    matrix_list.append(confusion_matrix(y_test, forest1.predict(x_test)))
+    kf_acc=accuracy_score(y_test,forest1.predict(x_test))
+    kf_recall=recall_score(y_test,forest1.predict(x_test),average=<span class="hljs-string">'weighted'</span>)
+    kf_prec=precision_score(y_test,forest1.predict(x_test),average=<span class="hljs-string">'weighted'</span>)
+    
+    accuracies=forest1.score(x_test,y_test)
+
+acc_avg=np.mean(accuracies)
+print(<span class="hljs-string">"K-fold cross-validation accuracy: {}%"</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">round</span>(acc_avg*<span class="hljs-number">100</span>,<span class="hljs-number">2</span>)))
+
+matrix_list=np.average(np.array(matrix_list),axis=<span class="hljs-number">0</span>)
+</div></div></code></pre><ul>
+<li>
+<p><strong><span>confusion matrix</span></strong><br>
+<img src="https://i.imgur.com/PT9kCit.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><strong><span>result</span></strong><br>
+<img src="https://i.imgur.com/W90OhHf.png" alt="" width="450" loading="lazy"><br>
+<img src="https://i.imgur.com/gDX5f5V.png" alt="" width="450" loading="lazy"></p>
+</li>
+</ul><ul>
+<li><span>n_estimators=20</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span></div><div class="code">forest1 = RandomForestClassifier(n_estimators=<span class="hljs-number">20</span>)
+</div></div></code></pre><ul>
+<li><strong><span>confusion matrix</span></strong></li>
+</ul><p><img src="https://i.imgur.com/w47r4Uu.png" alt="" loading="lazy"></p><ul>
+<li><strong><span>result</span></strong><br>
+<img src="https://i.imgur.com/OX8DlMw.png" alt="" width="450" loading="lazy"><br>
+<img src="https://i.imgur.com/6nClRMx.png" alt="" width="450" loading="lazy"></li>
+</ul><ul>
+<li><span>n_estimators=30</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span></div><div class="code">forest1 = RandomForestClassifier(n_estimators=<span class="hljs-number">30</span>)
+</div></div></code></pre><ul>
+<li><strong><span>confusion matrix</span></strong></li>
+</ul><blockquote>
+<p><span>這邊圖上的n=20沒改到QQ但數字是n=30的沒錯</span></p>
+</blockquote><p><img src="https://i.imgur.com/w52qL62.png" alt="" loading="lazy"></p><ul>
+<li><strong><span>result</span></strong><br>
+<img src="https://i.imgur.com/b78lLt0.png" alt="" width="450" loading="lazy"><br>
+<img src="https://i.imgur.com/rvhga7M.png" alt="" width="450" loading="lazy"></li>
+</ul><h3 id="Comparison" data-id="Comparison"><a class="anchor hidden-xs" href="#Comparison" title="Comparison"><span class="octicon octicon-link"></span></a><span>Comparison</span></h3><p><span>Random Forest設置的最大樹木數量不是越大越好，大約在n=20時有最佳的效果，在n=30時反而準確率往下降，可能是決策樹的數量太多了，造成overfitting。</span></p><h3 id="KNN1" data-id="KNN"><a class="anchor hidden-xs" href="#KNN1" title="KNN1"><span class="octicon octicon-link"></span></a><span>KNN</span></h3><div class="alert alert-warning">
+<p><span>此處做KNN model的3 different K values</span></p>
+</div><ul>
+<li><span>設置最大鄰居數量n_neighbors=3</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code">knn = KNeighborsClassifier(n_neighbors=<span class="hljs-number">3</span>)
+<span class="hljs-comment"># K-fold cross-validation with 𝐾=3</span>
+<span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> KFold
+kf=KFold(n_splits=<span class="hljs-number">3</span>, random_state=<span class="hljs-literal">None</span>, shuffle=<span class="hljs-literal">True</span>)
+
+matrix_list=<span class="hljs-built_in">list</span>()
+accuracies=[]
+kf_acc=[]
+kf_recall=[]
+kf_prec=[]
+
+<span class="hljs-keyword">for</span> train_index, test_index <span class="hljs-keyword">in</span> kf.split(x):
+    x_train, x_test = x[train_index], x[test_index]
+    y_train, y_test = y[train_index], y[test_index]
+    pca = PCA(n_components=<span class="hljs-string">'mle'</span>)
+    pca.fit(x_train)
+    x_train=pca.transform(x_train)
+    x_test=pca.transform(x_test)
+    knn.fit(x_train,y_train)
+    matrix_list.append(confusion_matrix(y_test, knn.predict(x_test)))
+    kf_acc=accuracy_score(y_test,knn.predict(x_test))
+    kf_recall=recall_score(y_test,knn.predict(x_test),average=<span class="hljs-string">'weighted'</span>)
+    kf_prec=precision_score(y_test,knn.predict(x_test),average=<span class="hljs-string">'weighted'</span>)
+    
+    accuracies=knn.score(x_test,y_test)
+
+acc_avg=np.mean(accuracies)
+print(<span class="hljs-string">"K-fold cross-validation accuracy: {}%"</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">round</span>(acc_avg*<span class="hljs-number">100</span>,<span class="hljs-number">2</span>)))
+
+matrix_list=np.average(np.array(matrix_list),axis=<span class="hljs-number">0</span>)
+</div></div></code></pre><ul>
+<li>
+<p><strong><span>confusion matrix</span></strong><br>
+<img src="https://i.imgur.com/9ciVHtK.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><strong><span>result</span></strong><br>
+<img src="https://i.imgur.com/ZKe28iK.png" alt="" width="450" loading="lazy"><br>
+<img src="https://i.imgur.com/A8v9gJt.png" alt="" width="450" loading="lazy"></p>
+</li>
+</ul><ul>
+<li><span>n_neighbors=5</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span></div><div class="code">knn = KNeighborsClassifier(n_neighbors=<span class="hljs-number">5</span>)
+</div></div></code></pre><ul>
+<li>
+<p><strong><span>confusion matrix</span></strong><br>
+<img src="https://i.imgur.com/DLQhMph.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><strong><span>result</span></strong><br>
+<img src="https://i.imgur.com/nT5lFQ3.png" alt="" width="450" loading="lazy"><br>
+<img src="https://i.imgur.com/uLgHq8j.png" alt="" width="450" loading="lazy"></p>
+</li>
+</ul><ul>
+<li><span>n_neighbors=10</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span></div><div class="code">knn = KNeighborsClassifier(n_neighbors=<span class="hljs-number">10</span>)
+</div></div></code></pre><ul>
+<li>
+<p><strong><span>confusion matrix</span></strong><br>
+<img src="https://i.imgur.com/3jHqUeJ.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><strong><span>result</span></strong><br>
+<img src="https://i.imgur.com/uPbpwLg.png" alt="" width="450" loading="lazy"><br>
+<img src="https://i.imgur.com/yBm7mZi.png" alt="" width="450" loading="lazy"></p>
+</li>
+</ul><h3 id="Comparison1" data-id="Comparison"><a class="anchor hidden-xs" href="#Comparison1" title="Comparison1"><span class="octicon octicon-link"></span></a><span>Comparison</span></h3><p><span>由結果可以看到隨著k值(鄰居數目)增加，準確率也跟著上升，顯然鄰居越多，投票出來的準確率就越高。</span><br>
+<span>此次測試最大值為k=10，如果繼續往上測可能可以找到更好的K值，但是太多超過訓練資料的維度的話可能會被太多無關的資料影響到準確率。</span></p><h1 id="5-Level-classification" data-id="5-Level-classification"><a class="anchor hidden-xs" href="#5-Level-classification" title="5-Level-classification"><span class="octicon octicon-link"></span></a><span>5-Level classification</span></h1><h2 id="Data-Preprocessing1" data-id="Data-Preprocessing"><a class="anchor hidden-xs" href="#Data-Preprocessing1" title="Data-Preprocessing1"><span class="octicon octicon-link"></span></a><span>Data Preprocessing</span></h2><ul>
+<li><span>一樣用apply函數，但函數裡不能放太多if else，所以自己寫一個function分類各區間</span></li>
+<li><span>為了後續方便，這裡直接分成數字型態的1 2 3 4 5，對應到A B C D F</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code">df_level=df.copy()
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">classifier</span>(<span class="hljs-params">row</span>):</span>
+    <span class="hljs-keyword">if</span> row&gt;=<span class="hljs-number">16</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'1'</span>    <span class="hljs-comment">#A</span>
+    <span class="hljs-keyword">if</span> row&lt;=<span class="hljs-number">15</span> <span class="hljs-keyword">and</span> row&gt;=<span class="hljs-number">14</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'2'</span>    <span class="hljs-comment">#B</span>
+    <span class="hljs-keyword">if</span> row&lt;=<span class="hljs-number">13</span> <span class="hljs-keyword">and</span> row&gt;=<span class="hljs-number">12</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'3'</span>    <span class="hljs-comment">#C</span>
+    <span class="hljs-keyword">if</span> row&lt;=<span class="hljs-number">11</span> <span class="hljs-keyword">and</span> row&gt;=<span class="hljs-number">10</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'4'</span>    <span class="hljs-comment">#D</span>
+    <span class="hljs-keyword">if</span> row&lt;=<span class="hljs-number">9</span> <span class="hljs-keyword">and</span> row&gt;=<span class="hljs-number">0</span>:
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'5'</span>    <span class="hljs-comment">#F</span>
+
+df_level[<span class="hljs-string">'level'</span>]=df_level.apply(<span class="hljs-keyword">lambda</span> row: classifier(row[<span class="hljs-string">'G3'</span>]),axis=<span class="hljs-number">1</span> )
+df_level=df_level.drop([<span class="hljs-string">'G3'</span>],axis=<span class="hljs-number">1</span>)
+</div></div></code></pre><h3 id="one-hot-encoding1" data-id="one-hot-encoding"><a class="anchor hidden-xs" href="#one-hot-encoding1" title="one-hot-encoding1"><span class="octicon octicon-link"></span></a><span>one-hot-encoding</span></h3><ul>
+<li><span>一樣把包含string的columns都轉成數字型態</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span></div><div class="code">df_level=pd.get_dummies(df_level,columns=[<span class="hljs-string">'sex'</span>,<span class="hljs-string">'school'</span>,<span class="hljs-string">'address'</span>,<span class="hljs-string">'famsize'</span>,<span class="hljs-string">'Pstatus'</span>,<span class="hljs-string">'Mjob'</span>,<span class="hljs-string">'Fjob'</span>,
+                                 <span class="hljs-string">'reason'</span>,<span class="hljs-string">'guardian'</span>,<span class="hljs-string">'schoolsup'</span>,<span class="hljs-string">'famsup'</span>,<span class="hljs-string">'paid'</span>,<span class="hljs-string">'activities'</span>,
+                                <span class="hljs-string">'nursery'</span>,<span class="hljs-string">'higher'</span>,<span class="hljs-string">'internet'</span>,<span class="hljs-string">'romantic'</span>])
+</div></div></code></pre><h3 id="Shuffle-and-split-the-data1" data-id="Shuffle-and-split-the-data"><a class="anchor hidden-xs" href="#Shuffle-and-split-the-data1" title="Shuffle-and-split-the-data1"><span class="octicon octicon-link"></span></a><span>Shuffle and split the data</span></h3><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span></div><div class="code">df_level=sklearn.utils.shuffle(df_level)
+y = df_level[<span class="hljs-string">'level'</span>].values
+x = df_level.drop([<span class="hljs-string">'level'</span>], axis=<span class="hljs-number">1</span>).values
+</div></div></code></pre><h3 id="Build-Table1" data-id="Build-Table"><a class="anchor hidden-xs" href="#Build-Table1" title="Build-Table1"><span class="octicon octicon-link"></span></a><span>Build Table</span></h3><ul>
+<li><span>建立紀錄數據用的table</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code">table1=prettytable.PrettyTable()
+table1.field_names=[<span class="hljs-string">'[5-level] Decision Tree '</span>,<span class="hljs-string">'Accuracy'</span>,<span class="hljs-string">'Recall'</span>,<span class="hljs-string">'Precision'</span>]
+
+table2=prettytable.PrettyTable()
+table2.field_names=[<span class="hljs-string">'[5-level] Random Forest'</span>,<span class="hljs-string">'Accuracy'</span>,<span class="hljs-string">'Recall'</span>,<span class="hljs-string">'Precision'</span>]
+
+table3=prettytable.PrettyTable()
+table3.field_names=[<span class="hljs-string">'[5-level] KNN Classifier '</span>,<span class="hljs-string">'Accuracy'</span>,<span class="hljs-string">'Recall'</span>,<span class="hljs-string">'Precision'</span>]
+</div></div></code></pre><h2 id="Model-Construction-amp-Validation1" data-id="Model-Construction-amp-Validation"><a class="anchor hidden-xs" href="#Model-Construction-amp-Validation1" title="Model-Construction-amp-Validation1"><span class="octicon octicon-link"></span></a><span>Model Construction &amp; Validation</span></h2><h2 id="Without-PCA1" data-id="Without-PCA"><a class="anchor hidden-xs" href="#Without-PCA1" title="Without-PCA1"><span class="octicon octicon-link"></span></a><span>Without PCA</span></h2><div class="alert alert-success">
+<p><span>與binary classification的程式碼差不多一樣，這裡直接放結果</span></p>
+</div><h3 id="Decision-Tree2" data-id="Decision-Tree"><a class="anchor hidden-xs" href="#Decision-Tree2" title="Decision-Tree2"><span class="octicon octicon-link"></span></a><span>Decision Tree</span></h3><ul>
+<li>
+<p><strong><span>confusion matrix</span></strong><br>
+<img src="https://i.imgur.com/yXvlLp9.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><strong><span>result</span></strong><br>
+<img src="https://i.imgur.com/6JqTkn6.png" alt="" width="450" loading="lazy"><br>
+<img src="https://i.imgur.com/O4NUX13.png" alt="" width="450" loading="lazy"></p>
+</li>
+</ul><h3 id="Random-forest" data-id="Random-forest"><a class="anchor hidden-xs" href="#Random-forest" title="Random-forest"><span class="octicon octicon-link"></span></a><span>Random forest</span></h3><ul>
+<li><span>n_estimators=20</span></li>
+</ul><ul>
+<li>
+<p><strong><span>confusion matrix</span></strong><br>
+<img src="https://i.imgur.com/SlPyOoL.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><strong><span>result</span></strong><br>
+<img src="https://i.imgur.com/4F0mu3q.png" alt="" width="450" loading="lazy"><br>
+<img src="https://i.imgur.com/6V388iJ.png" alt="" width="450" loading="lazy"></p>
+</li>
+</ul><h3 id="KNN2" data-id="KNN"><a class="anchor hidden-xs" href="#KNN2" title="KNN2"><span class="octicon octicon-link"></span></a><span>KNN</span></h3><ul>
+<li><span>n_neighbors=5</span></li>
+</ul><ul>
+<li>
+<p><strong><span>confusion matrix</span></strong><br>
+<img src="https://i.imgur.com/FQAr6QT.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><strong><span>result</span></strong><br>
+<img src="https://i.imgur.com/uLY9Jbr.png" alt="" width="450" loading="lazy"><br>
+<img src="https://i.imgur.com/53KuneC.png" alt="" width="450" loading="lazy"></p>
+</li>
+</ul><h2 id="With-PCA1" data-id="With-PCA"><a class="anchor hidden-xs" href="#With-PCA1" title="With-PCA1"><span class="octicon octicon-link"></span></a><span>With PCA</span></h2><div class="alert alert-success">
+<p><span>也是跟binary classification的程式碼差不多作法，直接放結果</span></p>
+</div><h3 id="Decision-Tree3" data-id="Decision-Tree"><a class="anchor hidden-xs" href="#Decision-Tree3" title="Decision-Tree3"><span class="octicon octicon-link"></span></a><span>Decision Tree</span></h3><ul>
+<li>
+<p><strong><span>confusion matrix</span></strong><br>
+<img src="https://i.imgur.com/YyVhTcp.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><strong><span>result</span></strong><br>
+<img src="https://i.imgur.com/q0X9KMN.png" alt="" width="450" loading="lazy"><br>
+<img src="https://i.imgur.com/RQx2Ewk.png" alt="" width="450" loading="lazy"></p>
+</li>
+</ul><h3 id="Random-forest1" data-id="Random-forest"><a class="anchor hidden-xs" href="#Random-forest1" title="Random-forest1"><span class="octicon octicon-link"></span></a><span>Random forest</span></h3><ul>
+<li><span>n_estimators=20</span></li>
+</ul><ul>
+<li>
+<p><strong><span>confusion matrix</span></strong><br>
+<img src="https://i.imgur.com/hLAfVKj.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><strong><span>result</span></strong><br>
+<img src="https://i.imgur.com/rIAtvI4.png" alt="" width="450" loading="lazy"><br>
+<img src="https://i.imgur.com/RcRVPps.png" alt="" width="450" loading="lazy"></p>
+</li>
+</ul><h3 id="KNN3" data-id="KNN"><a class="anchor hidden-xs" href="#KNN3" title="KNN3"><span class="octicon octicon-link"></span></a><span>KNN</span></h3><ul>
+<li><span>n_neighbors=5</span></li>
+</ul><ul>
+<li>
+<p><strong><span>confusion matrix</span></strong><br>
+<img src="https://i.imgur.com/nixuk8V.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><strong><span>result</span></strong><br>
+<img src="https://i.imgur.com/ISQq3GK.png" alt="" width="450" loading="lazy"><br>
+<img src="https://i.imgur.com/zrsNPkk.png" alt="" width="450" loading="lazy"></p>
+</li>
+</ul><h1 id="Comparison-amp-Conclusion" data-id="Comparison-amp-Conclusion"><a class="anchor hidden-xs" href="#Comparison-amp-Conclusion" title="Comparison-amp-Conclusion"><span class="octicon octicon-link"></span></a><span>Comparison &amp; Conclusion</span></h1><ul>
+<li><span>三個model用起來的準確率都大同小異，做完PCA後準確率稍微提升，比如binary classification中的random forest和knn，因為可以去除原資料中的冗餘資料，使判斷更準確。</span></li>
+<li><span>但是在5-level中PCA的效果不明顯，甚至有下降的現象。可能是因為有五個label，本來的資料就不夠，降維之後可參考的數據變得更少，準確率又會下降。</span></li>
+</ul><h1 id="Question" data-id="Question"><a class="anchor hidden-xs" href="#Question" title="Question"><span class="octicon octicon-link"></span></a><span>Question</span></h1><h2 id="Decision-Tree4" data-id="Decision-Tree"><a class="anchor hidden-xs" href="#Decision-Tree4" title="Decision-Tree4"><span class="octicon octicon-link"></span></a><span>Decision Tree</span></h2><blockquote>
+<p><span>Show the prediction and reasoning of one arbitrary sample in the testing set</span></p>
+</blockquote><ul>
+<li><span>重新訓練一個model，採用binary的data</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code">dy = df_bi[<span class="hljs-string">'pass'</span>].values
+dx = df_bi.drop([<span class="hljs-string">'pass'</span>], axis=<span class="hljs-number">1</span>).values
+clf=DecisionTreeClassifier(random_state=<span class="hljs-number">0</span>)
+dx_train, dx_test, dy_train, dy_test = train_test_split(
+    dx, dy, test_size=<span class="hljs-number">0.33</span>, random_state=<span class="hljs-number">42</span>)
+clf=clf.fit(dx_train,dy_train)
+</div></div></code></pre><ul>
+<li><span>用graphviz畫圖</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code"><span class="hljs-keyword">import</span> graphviz 
+dot_data = tree.export_graphviz(clf, out_file=<span class="hljs-literal">None</span>) 
+graph = graphviz.Source(dot_data) 
+graph.render(<span class="hljs-string">"DecisionTree"</span>)
+dot_data = tree.export_graphviz(clf, out_file=<span class="hljs-literal">None</span>, 
+                     feature_names= df_bi.drop([<span class="hljs-string">'pass'</span>], axis=<span class="hljs-number">1</span>).columns,  
+                     class_names= [<span class="hljs-string">'pass'</span>,<span class="hljs-string">'fail'</span>],  
+                     filled=<span class="hljs-literal">True</span>, rounded=<span class="hljs-literal">True</span>,  
+                     special_characters=<span class="hljs-literal">True</span>,
+                               node_ids=<span class="hljs-literal">True</span>)  
+graph = graphviz.Source(dot_data)  
+graph 
+</div></div></code></pre><p><img src="https://i.imgur.com/AcCaoJ8.png" alt="" loading="lazy"></p><ul>
+<li><span>把test data放到model的函式decision_path裡，得到每個資料走過的node indice，再指定某個sample id(test data的某一個row)即可得到走過的路徑</span></li>
+<li><span>node_id列印出走到哪個node，以及怎麼走到該node的(跟threshold比大小)</span></li>
+<li><span>此處設定sample_id=0，也就是test第一筆資料</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code">n_nodes = clf.tree_.node_count
+children_left = clf.tree_.children_left
+children_right = clf.tree_.children_right
+feature = clf.tree_.feature
+threshold = clf.tree_.threshold
+
+
+node_indicator = clf.decision_path(dx_test)
+leaf_id = clf.apply(dx_test)
+
+sample_id = <span class="hljs-number">0</span>
+<span class="hljs-comment"># obtain ids of the nodes `sample_id` goes through, i.e., row `sample_id`</span>
+node_index = node_indicator.indices[
+    node_indicator.indptr[sample_id] : node_indicator.indptr[sample_id + <span class="hljs-number">1</span>]
+]
+
+print(<span class="hljs-string">"Rules used to predict sample {id}:\n"</span>.<span class="hljs-built_in">format</span>(<span class="hljs-built_in">id</span>=sample_id))
+<span class="hljs-keyword">for</span> node_id <span class="hljs-keyword">in</span> node_index:
+    <span class="hljs-comment"># continue to the next node if it is a leaf node</span>
+    <span class="hljs-keyword">if</span> leaf_id[sample_id] == node_id:
+        <span class="hljs-keyword">continue</span>
+
+    <span class="hljs-comment"># check if value of the split feature for sample 0 is below threshold</span>
+    <span class="hljs-keyword">if</span> dx_test[sample_id, feature[node_id]] &lt;= threshold[node_id]:
+        threshold_sign = <span class="hljs-string">"&lt;="</span>
+    <span class="hljs-keyword">else</span>:
+        threshold_sign = <span class="hljs-string">"&gt;"</span>
+
+    print(
+        <span class="hljs-string">"decision node {node} : (X_test[{sample}, {feature}] = {value}) "</span>
+        <span class="hljs-string">"{inequality} {threshold})"</span>.<span class="hljs-built_in">format</span>(
+            node=node_id,
+            sample=sample_id,
+            feature=feature[node_id],
+            value=dx_test[sample_id, feature[node_id]],
+            inequality=threshold_sign,
+            threshold=threshold[node_id],
+        )
+    )
+</div></div></code></pre><ul>
+<li><strong><span>result</span></strong></li>
+</ul><p><img src="https://i.imgur.com/b7B1ap0.png" alt="" loading="lazy"></p><h2 id="Random-Forest2" data-id="Random-Forest"><a class="anchor hidden-xs" href="#Random-Forest2" title="Random-Forest2"><span class="octicon octicon-link"></span></a><span>Random Forest</span></h2><blockquote>
+<p><span>Describe the difference between boosting and bagging.</span></p>
+</blockquote><p><strong><span>Bagging</span></strong><br>
+<span>從訓練資料中隨機抽取(取出後放回，n&lt;N)樣本訓練多個分類器，每個分類器的權重一致最後用投票方式得到最終結果</span></p><p><strong><span>Boosting</span></strong><br>
+<span>和Bagging不同的是分類器之間是有關聯性的，是透過將舊分類器的錯誤資料權重提高，然後再訓練新的分類器</span></p><p><strong><span>差別</span></strong></p><ul>
+<li><span>樣本選擇</span>
+<ul>
+<li><span>Bagging採用Bootstrap隨機放回抽樣</span></li>
+<li><span>每輪的training data不變，只有樣本權重會變</span></li>
+</ul>
+</li>
+<li><span>樣本權重</span>
+<ul>
+<li><span>Bagging採用均勻取樣，使每個樣本權重相等</span></li>
+<li><span>Boosting會根據錯誤率回調權重，錯誤率越大權重越大</span></li>
+</ul>
+</li>
+<li><span>預測函式</span>
+<ul>
+<li><span>Bagging的預測函式權重相等</span></li>
+<li><span>Boosting中誤差越小的預測函式其權重越大</span></li>
+</ul>
+</li>
+<li><span>平行計算</span>
+<ul>
+<li><span>Bagging各個預測函式可以並行生成</span></li>
+<li><span>Boosting各個預測函式必須按順序迭代生成</span></li>
+</ul>
+</li>
+</ul><h2 id="KNN4" data-id="KNN"><a class="anchor hidden-xs" href="#KNN4" title="KNN4"><span class="octicon octicon-link"></span></a><span>KNN</span></h2><blockquote>
+<p><span>Show the prediction and reasoning of one arbitrary sample in the testing set.</span></p>
+</blockquote><ul>
+<li><span>一樣重新訓練model，這裡用5-level classification的資料</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code">knn_q = KNeighborsClassifier(n_neighbors=<span class="hljs-number">5</span>)
+kx_train, kx_test, ky_train, ky_test = train_test_split(
+    x, y, test_size=<span class="hljs-number">0.33</span>, random_state=<span class="hljs-number">42</span>)
+knn_q=knn_q.fit(kx_train,ky_train)
+</div></div></code></pre><ul>
+<li><span>使用knn model 內建的kneighbors函數，引數放入test data，可以得到test data的每個最鄰近的鄰居(training data)和距離</span></li>
+<li><span>根據鄰居的label和距離可以大約推測是哪個label，最後印出實際的label比對</span></li>
+<li><span>這裡取第10個sample，也就是第11筆test data</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code">sample=<span class="hljs-number">10</span>
+distance,indice=knn_q.kneighbors(kx_test,return_distance=<span class="hljs-literal">True</span>)
+distance[sample],indice[sample]
+print(<span class="hljs-string">"Sample : "</span>,sample)
+<span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">5</span>):
+    vote_id=indice[sample][i]
+    print(<span class="hljs-string">"Nearest neighbor no."</span>,i+<span class="hljs-number">1</span>)
+    print(<span class="hljs-string">"Indice:"</span>,vote_id,<span class="hljs-string">"Distance:"</span>,distance[sample][i] ,<span class="hljs-string">" Vote label:"</span>,ky_train[vote_id])
+print(<span class="hljs-string">"Actual Label:"</span>,ky_test[sample])
+</div></div></code></pre><p><img src="https://i.imgur.com/nY3MWWh.png" alt="" loading="lazy"></p><h2 id="KNN-Bonus" data-id="KNN-Bonus"><a class="anchor hidden-xs" href="#KNN-Bonus" title="KNN-Bonus"><span class="octicon octicon-link"></span></a><span>KNN Bonus</span></h2><blockquote>
+<p><span>pick 2 features, draw and describe the KNN decision boundaries.You can pick 2 features to re-train the model, or just fix every other feature value.</span></p>
+</blockquote><ul>
+<li><span>選兩個features分別為G1 G2，把這兩個feature拉出來分資料後丟到knn model裡train</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code">df_bonus=df_level.loc[:,[<span class="hljs-string">'G1'</span>,<span class="hljs-string">'G2'</span>,<span class="hljs-string">'level'</span>]]
+
+by = df_bonus[<span class="hljs-string">'level'</span>].values
+bx = df_bonus.drop([<span class="hljs-string">'level'</span>], axis=<span class="hljs-number">1</span>).values
+
+knn_b = KNeighborsClassifier(n_neighbors=<span class="hljs-number">5</span>)
+bx_train, bx_test, by_train, by_test = train_test_split(
+    bx, by, test_size=<span class="hljs-number">0.33</span>, random_state=<span class="hljs-number">42</span>)
+knn_b=knn_b.fit(bx_train,by_train)
+</div></div></code></pre><ul>
+<li></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code"><span class="hljs-keyword">from</span> matplotlib.colors <span class="hljs-keyword">import</span> ListedColormap
+
+h = <span class="hljs-number">0.02</span>  <span class="hljs-comment"># step size in the mesh</span>
+
+<span class="hljs-comment"># create colormap for the contour plot</span>
+cmap_light = ListedColormap(<span class="hljs-built_in">list</span>(sns.color_palette(<span class="hljs-string">'pastel'</span>, n_colors=<span class="hljs-number">5</span>)))
+
+<span class="hljs-comment"># Plot the decision boundary.</span>
+<span class="hljs-comment"># For that, we will assign a color to each point in the mesh [x_min, x_max]x[y_min, y_max].</span>
+x_min, x_max = df_bonus[<span class="hljs-string">'G1'</span>].<span class="hljs-built_in">min</span>() - <span class="hljs-number">1</span>, df_bonus[<span class="hljs-string">'G1'</span>].<span class="hljs-built_in">max</span>() + <span class="hljs-number">1</span>
+y_min, y_max = df_bonus[<span class="hljs-string">'G2'</span>].<span class="hljs-built_in">min</span>() - <span class="hljs-number">1</span>, df_bonus[<span class="hljs-string">'G2'</span>].<span class="hljs-built_in">max</span>() + <span class="hljs-number">1</span>
+
+xx, yy = np.meshgrid(np.arange(x_min, x_max, h), np.arange(y_min, y_max, h))
+Z = knn_b.predict(np.c_[xx.ravel(), yy.ravel()]).reshape(xx.shape)
+<span class="hljs-comment"># create plot</span>
+fig, ax = plt.subplots()
+
+<span class="hljs-comment"># add data points</span>
+sns.scatterplot(data=df_bonus, x=<span class="hljs-string">'G1'</span>, y=<span class="hljs-string">'G2'</span>, hue=<span class="hljs-string">'level'</span>, ax=ax, edgecolor=<span class="hljs-string">'k'</span>)
+
+<span class="hljs-comment"># add decision boundary countour map</span>
+ax.contourf(xx, yy, Z, cmap=cmap_light, alpha=<span class="hljs-number">0.4</span>)
+
+<span class="hljs-comment"># legend</span>
+lgd = plt.legend(bbox_to_anchor=(<span class="hljs-number">1.05</span>, <span class="hljs-number">1</span>), loc=<span class="hljs-string">'upper left'</span>)
+
+plt.show()
+</div></div></code></pre><p><img src="https://i.imgur.com/4pAxiYX.png" alt="" loading="lazy"></p><h2 id="PCA" data-id="PCA"><a class="anchor hidden-xs" href="#PCA" title="PCA"><span class="octicon octicon-link"></span></a><span>PCA</span></h2><blockquote>
+<p><span>In 5-Level classification, reduce the data dimension to 2 using PCA and draw a scatter plot. You have to colorize the data points based on their labels.</span></p>
+</blockquote><ul>
+<li><span>取5-level的資料做降維後畫圖呈現</span></li>
+</ul><pre><code class="python hljs"><div class="wrapper"><div class="gutter linenumber"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div><div class="code">py = df_level[<span class="hljs-string">'level'</span>].values
+px = df_level.drop([<span class="hljs-string">'level'</span>], axis=<span class="hljs-number">1</span>).values
+
+pca = PCA(n_components=<span class="hljs-number">2</span>)
+pca.fit(x)
+pca_x=pca.transform(x)
+df_x = pd.DataFrame(pca_x,columns=[<span class="hljs-string">'Princicple component 1'</span>,<span class="hljs-string">'Princicple component 2'</span>])
+df_y=pd.DataFrame(py,columns=[<span class="hljs-string">'level'</span>])
+df_scatter=pd.concat([df_x,df_y],axis=<span class="hljs-number">1</span>)
+sns.scatterplot(data=df_scatter, x=<span class="hljs-string">"Princicple component 1"</span>, y=<span class="hljs-string">"Princicple component 2"</span>, hue=<span class="hljs-string">"level"</span>, palette=<span class="hljs-string">"bright"</span>)
+</div></div></code></pre><p><img src="https://i.imgur.com/8TSNKJQ.png" alt="" loading="lazy"></p><ul>
+<li><span>備註:此處的1 2 3 4 5分別對應到A B C D F，當初為了做one-hot encoding方便起見直接換成數字了。</span></li>
+</ul></div>
+    <div class="ui-toc dropup unselectable hidden-print" style="display:none;">
+        <div class="pull-right dropdown">
+            <a id="tocLabel" class="ui-toc-label btn btn-default" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" title="Table of content">
+                <i class="fa fa-bars"></i>
+            </a>
+            <ul id="ui-toc" class="ui-toc-dropdown dropdown-menu" aria-labelledby="tocLabel">
+                <div class="toc"><ul class="nav">
+<li><a href="#Assignment2-Decision-Tree-amp-Random-Forest-amp-KNN-amp-PCA" title="Assignment2 Decision Tree &amp; Random Forest &amp; KNN &amp; PCA">Assignment2 Decision Tree &amp; Random Forest &amp; KNN &amp; PCA</a><ul class="nav">
+<li><a href="#Data-Input" title="Data Input">Data Input</a></li>
+</ul>
+</li>
+<li class=""><a href="#Binary-classification" title="Binary classification">Binary classification</a><ul class="nav">
+<li class=""><a href="#Data-Preprocessing" title="Data Preprocessing">Data Preprocessing</a><ul class="nav">
+<li><a href="#one-hot-encoding" title="one-hot-encoding">one-hot-encoding</a></li>
+<li class=""><a href="#Shuffle-and-split-the-data" title="Shuffle and split the data">Shuffle and split the data</a></li>
+<li><a href="#Build-Table" title="Build Table">Build Table</a></li>
+</ul>
+</li>
+<li><a href="#Model-Construction-amp-Validation" title="Model Construction &amp; Validation">Model Construction &amp; Validation</a></li>
+<li><a href="#Without-PCA" title="Without PCA">Without PCA</a><ul class="nav">
+<li><a href="#Decision-Tree" title="Decision Tree">Decision Tree</a></li>
+<li><a href="#Random-Forest" title="Random Forest">Random Forest</a></li>
+<li><a href="#KNN" title="KNN">KNN</a></li>
+</ul>
+</li>
+<li><a href="#With-PCA" title="With PCA">With PCA</a></li>
+<li><a href="#Principal-components-analysis-PCA" title="Principal components analysis (PCA)">Principal components analysis (PCA)</a><ul class="nav">
+<li><a href="#Decision-Tree1" title="Decision Tree">Decision Tree</a></li>
+<li><a href="#Random-Forest1" title="Random Forest">Random Forest</a></li>
+<li><a href="#Comparison" title="Comparison">Comparison</a></li>
+<li><a href="#KNN1" title="KNN">KNN</a></li>
+<li><a href="#Comparison1" title="Comparison">Comparison</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#5-Level-classification" title="5-Level classification">5-Level classification</a><ul class="nav">
+<li><a href="#Data-Preprocessing1" title="Data Preprocessing">Data Preprocessing</a><ul class="nav">
+<li><a href="#one-hot-encoding1" title="one-hot-encoding">one-hot-encoding</a></li>
+<li><a href="#Shuffle-and-split-the-data1" title="Shuffle and split the data">Shuffle and split the data</a></li>
+<li><a href="#Build-Table1" title="Build Table">Build Table</a></li>
+</ul>
+</li>
+<li><a href="#Model-Construction-amp-Validation1" title="Model Construction &amp; Validation">Model Construction &amp; Validation</a></li>
+<li><a href="#Without-PCA1" title="Without PCA">Without PCA</a><ul class="nav">
+<li><a href="#Decision-Tree2" title="Decision Tree">Decision Tree</a></li>
+<li><a href="#Random-forest" title="Random forest">Random forest</a></li>
+<li><a href="#KNN2" title="KNN">KNN</a></li>
+</ul>
+</li>
+<li><a href="#With-PCA1" title="With PCA">With PCA</a><ul class="nav">
+<li><a href="#Decision-Tree3" title="Decision Tree">Decision Tree</a></li>
+<li><a href="#Random-forest1" title="Random forest">Random forest</a></li>
+<li><a href="#KNN3" title="KNN">KNN</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#Comparison-amp-Conclusion" title="Comparison &amp; Conclusion">Comparison &amp; Conclusion</a></li>
+<li><a href="#Question" title="Question">Question</a><ul class="nav">
+<li><a href="#Decision-Tree4" title="Decision Tree">Decision Tree</a></li>
+<li><a href="#Random-Forest2" title="Random Forest">Random Forest</a></li>
+<li><a href="#KNN4" title="KNN">KNN</a></li>
+<li><a href="#KNN-Bonus" title="KNN Bonus">KNN Bonus</a></li>
+<li><a href="#PCA" title="PCA">PCA</a></li>
+</ul>
+</li>
+</ul>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">全部展開</a><a class="back-to-top" href="#">回到頂部</a><a class="go-to-bottom" href="#">移至底部</a></div>
+            </ul>
+        </div>
+    </div>
+    <div id="ui-toc-affix" class="ui-affix-toc ui-toc-dropdown unselectable hidden-print" data-spy="affix" style="top:17px;display:none;" null null>
+        <div class="toc"><ul class="nav">
+<li class=""><a href="#Assignment2-Decision-Tree-amp-Random-Forest-amp-KNN-amp-PCA" title="Assignment2 Decision Tree &amp; Random Forest &amp; KNN &amp; PCA">Assignment2 Decision Tree &amp; Random Forest &amp; KNN &amp; PCA</a><ul class="nav">
+<li class=""><a href="#Data-Input" title="Data Input">Data Input</a></li>
+</ul>
+</li>
+<li class=""><a href="#Binary-classification" title="Binary classification">Binary classification</a><ul class="nav">
+<li class=""><a href="#Data-Preprocessing" title="Data Preprocessing">Data Preprocessing</a><ul class="nav">
+<li class=""><a href="#one-hot-encoding" title="one-hot-encoding">one-hot-encoding</a></li>
+<li class=""><a href="#Shuffle-and-split-the-data" title="Shuffle and split the data">Shuffle and split the data</a></li>
+<li class=""><a href="#Build-Table" title="Build Table">Build Table</a></li>
+</ul>
+</li>
+<li class=""><a href="#Model-Construction-amp-Validation" title="Model Construction &amp; Validation">Model Construction &amp; Validation</a></li>
+<li class=""><a href="#Without-PCA" title="Without PCA">Without PCA</a><ul class="nav">
+<li class=""><a href="#Decision-Tree" title="Decision Tree">Decision Tree</a></li>
+<li class=""><a href="#Random-Forest" title="Random Forest">Random Forest</a></li>
+<li class=""><a href="#KNN" title="KNN">KNN</a></li>
+</ul>
+</li>
+<li><a href="#With-PCA" title="With PCA">With PCA</a></li>
+<li><a href="#Principal-components-analysis-PCA" title="Principal components analysis (PCA)">Principal components analysis (PCA)</a><ul class="nav">
+<li><a href="#Decision-Tree1" title="Decision Tree">Decision Tree</a></li>
+<li><a href="#Random-Forest1" title="Random Forest">Random Forest</a></li>
+<li><a href="#Comparison" title="Comparison">Comparison</a></li>
+<li><a href="#KNN1" title="KNN">KNN</a></li>
+<li><a href="#Comparison1" title="Comparison">Comparison</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#5-Level-classification" title="5-Level classification">5-Level classification</a><ul class="nav">
+<li><a href="#Data-Preprocessing1" title="Data Preprocessing">Data Preprocessing</a><ul class="nav">
+<li><a href="#one-hot-encoding1" title="one-hot-encoding">one-hot-encoding</a></li>
+<li><a href="#Shuffle-and-split-the-data1" title="Shuffle and split the data">Shuffle and split the data</a></li>
+<li><a href="#Build-Table1" title="Build Table">Build Table</a></li>
+</ul>
+</li>
+<li><a href="#Model-Construction-amp-Validation1" title="Model Construction &amp; Validation">Model Construction &amp; Validation</a></li>
+<li><a href="#Without-PCA1" title="Without PCA">Without PCA</a><ul class="nav">
+<li><a href="#Decision-Tree2" title="Decision Tree">Decision Tree</a></li>
+<li><a href="#Random-forest" title="Random forest">Random forest</a></li>
+<li><a href="#KNN2" title="KNN">KNN</a></li>
+</ul>
+</li>
+<li><a href="#With-PCA1" title="With PCA">With PCA</a><ul class="nav">
+<li><a href="#Decision-Tree3" title="Decision Tree">Decision Tree</a></li>
+<li><a href="#Random-forest1" title="Random forest">Random forest</a></li>
+<li><a href="#KNN3" title="KNN">KNN</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#Comparison-amp-Conclusion" title="Comparison &amp; Conclusion">Comparison &amp; Conclusion</a></li>
+<li><a href="#Question" title="Question">Question</a><ul class="nav">
+<li><a href="#Decision-Tree4" title="Decision Tree">Decision Tree</a></li>
+<li><a href="#Random-Forest2" title="Random Forest">Random Forest</a></li>
+<li><a href="#KNN4" title="KNN">KNN</a></li>
+<li><a href="#KNN-Bonus" title="KNN Bonus">KNN Bonus</a></li>
+<li><a href="#PCA" title="PCA">PCA</a></li>
+</ul>
+</li>
+</ul>
+</div><div class="toc-menu"><a class="expand-toggle" href="#">全部展開</a><a class="back-to-top" href="#">回到頂部</a><a class="go-to-bottom" href="#">移至底部</a></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gist-embed/2.6.0/gist-embed.min.js" integrity="sha256-KyF2D6xPIJUW5sUDSs93vWyZm+1RzIpKCexxElmxl8g=" crossorigin="anonymous" defer></script>
+    <script>
+        var markdown = $(".markdown-body");
+        //smooth all hash trigger scrolling
+        function smoothHashScroll() {
+            var hashElements = $("a[href^='#']").toArray();
+            for (var i = 0; i < hashElements.length; i++) {
+                var element = hashElements[i];
+                var $element = $(element);
+                var hash = element.hash;
+                if (hash) {
+                    $element.on('click', function (e) {
+                        // store hash
+                        var hash = this.hash;
+                        if ($(hash).length <= 0) return;
+                        // prevent default anchor click behavior
+                        e.preventDefault();
+                        // animate
+                        $('body, html').stop(true, true).animate({
+                            scrollTop: $(hash).offset().top
+                        }, 100, "linear", function () {
+                            // when done, add hash to url
+                            // (default click behaviour)
+                            window.location.hash = hash;
+                        });
+                    });
+                }
+            }
+        }
+
+        smoothHashScroll();
+        var toc = $('.ui-toc');
+        var tocAffix = $('.ui-affix-toc');
+        var tocDropdown = $('.ui-toc-dropdown');
+        //toc
+        tocDropdown.click(function (e) {
+            e.stopPropagation();
+        });
+
+        var enoughForAffixToc = true;
+
+        function generateScrollspy() {
+            $(document.body).scrollspy({
+                target: ''
+            });
+            $(document.body).scrollspy('refresh');
+            if (enoughForAffixToc) {
+                toc.hide();
+                tocAffix.show();
+            } else {
+                tocAffix.hide();
+                toc.show();
+            }
+            $(document.body).scroll();
+        }
+
+        function windowResize() {
+            //toc right
+            var paddingRight = parseFloat(markdown.css('padding-right'));
+            var right = ($(window).width() - (markdown.offset().left + markdown.outerWidth() - paddingRight));
+            toc.css('right', right + 'px');
+            //affix toc left
+            var newbool;
+            var rightMargin = (markdown.parent().outerWidth() - markdown.outerWidth()) / 2;
+            //for ipad or wider device
+            if (rightMargin >= 133) {
+                newbool = true;
+                var affixLeftMargin = (tocAffix.outerWidth() - tocAffix.width()) / 2;
+                var left = markdown.offset().left + markdown.outerWidth() - affixLeftMargin;
+                tocAffix.css('left', left + 'px');
+            } else {
+                newbool = false;
+            }
+            if (newbool != enoughForAffixToc) {
+                enoughForAffixToc = newbool;
+                generateScrollspy();
+            }
+        }
+        $(window).resize(function () {
+            windowResize();
+        });
+        $(document).ready(function () {
+            windowResize();
+            generateScrollspy();
+        });
+
+        //remove hash
+        function removeHash() {
+            window.location.hash = '';
+        }
+
+        var backtotop = $('.back-to-top');
+        var gotobottom = $('.go-to-bottom');
+
+        backtotop.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToTop)
+                scrollToTop();
+            removeHash();
+        });
+        gotobottom.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (scrollToBottom)
+                scrollToBottom();
+            removeHash();
+        });
+
+        var toggle = $('.expand-toggle');
+        var tocExpand = false;
+
+        checkExpandToggle();
+        toggle.click(function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            tocExpand = !tocExpand;
+            checkExpandToggle();
+        })
+
+        function checkExpandToggle () {
+            var toc = $('.ui-toc-dropdown .toc');
+            var toggle = $('.expand-toggle');
+            if (!tocExpand) {
+                toc.removeClass('expand');
+                toggle.text('Expand all');
+            } else {
+                toc.addClass('expand');
+                toggle.text('Collapse all');
+            }
+        }
+
+        function scrollToTop() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: 0
+            }, 100, "linear");
+        }
+
+        function scrollToBottom() {
+            $('body, html').stop(true, true).animate({
+                scrollTop: $(document.body)[0].scrollHeight
+            }, 100, "linear");
+        }
+    </script>
+</body>
+
+</html>
