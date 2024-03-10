@@ -8,7 +8,7 @@ There are two datasets that need to be analyzed. For each dataset, you have to d
 
 Data Input - 5%
 Data Visualization - 15%
-For mushroom dataset
+- For mushroom dataset
 Show the data distribution by value frequency of every feature.
 For Iris dataset
 Show the data distribution by average, standard deviation, and value frequency(binning might be needed) of every feature.
@@ -30,7 +30,7 @@ Without Laplace smoothing
 Laplace smoothing
 𝑃(𝑋𝑖|𝑌)=𝑁(𝑋𝑖|𝑌)+𝑘𝑁(𝑌)+𝑘𝜏
 where 𝜏 is the number of all possible events of feature 𝑋𝑖
-For Iris dataset, whose features are all numerical, assume 𝑃(𝑋𝑖|𝑌) follows a 1D-Normal(Gaussian) distribution. - 10%
+- For Iris dataset, whose features are all numerical, assume 𝑃(𝑋𝑖|𝑌) follows a 1D-Normal(Gaussian) distribution. - 10%
 𝑃(𝑋𝑖|𝑌)=1𝜎2𝜋√𝑒−(𝑥−𝜇)22𝜎2
 where 𝜇,𝜎 are the mean and standard deviation of feature 𝑋𝑖 respectively, while label 𝑌 is determined.
 Train-Test-Split - 10%
@@ -51,7 +51,7 @@ Show 𝑃(𝑋𝑠𝑡𝑎𝑙𝑘−𝑐𝑜𝑙𝑜𝑟−𝑏𝑒𝑙𝑜𝑤
 For Iris dataset
 What are the values of 𝜇 and 𝜎 of assumed 𝑃(𝑋𝑝𝑒𝑡𝑎𝑙_𝑙𝑒𝑛𝑔𝑡ℎ|𝑌=Iris Versicolour)? - 5%
 Use a graph to show the probability density function of assumed 𝑃(𝑋𝑝𝑒𝑡𝑎𝑙_𝑙𝑒𝑛𝑔𝑡ℎ|𝑌=Iris Versicolour) - 10%
-Data
+## Data
 1. Mushroom dataset
 Data can be downloaded here:
 https://archive.ics.uci.edu/ml/datasets/mushroom
@@ -95,31 +95,3 @@ class:
 Iris Setosa
 Iris Versicolour
 Iris Virginica
-Submission & Scoring Policy
-Please submit a zip file, which contains the following, to the newE3 system.
-Report
-Explanation of how your code works.
-All the content mentioned above.
-Your name and student ID at the very beginning - 10%
-Accept formats: HTML
-From markdowns or jupyter notebooks.
-Source codes
-Accept languages: python3
-Accept formats: .ipynb
-Package-provided models are allowed
-Your score will be determined mainly by the submitted report.
-If there’s any problem with your code, TA might ask you (through email) to demo it. Otherwise, no demo is needed.
-Scores will be adjusted at the end of the semester for them to fit the school regulations.
-Plagiarizing is not allowed.
-Plagiarizing is checked by MOSS and manually afterward.
-You will get ZERO on that homework if you get caught the first time.
-The second time, you’ll FAIL this class.
-抄襲第一次作業零分，第二次當掉
-Acknowledgments
-Dua, D. and Graff, C. (2019). UCI Machine Learning Repository [http://archive.ics.uci.edu/ml]. Irvine, CA: University of California, School of Information and Computer Science.
-Tools that might be useful
-Jupyter Lab - Better data science experience
-numpy - Math thingy
-matplotlib - Plot thingy
-pandas - Data thingy
-scikit-learn - Machine Learning and stuff
